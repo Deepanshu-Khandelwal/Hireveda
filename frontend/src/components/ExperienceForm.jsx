@@ -30,7 +30,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl p-6 md:p-8 shadow-2xl animate-slide-up">
+    <div className="w-full max-w-2xl mx-auto bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl animate-slide-up">
       <div className="mb-6 flex justify-between items-start">
         <div>
           <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
@@ -71,7 +71,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
           {experiences.map((exp, index) => (
             <div 
               key={index} 
-              className="relative p-5 bg-slate-950/50 border border-slate-800 rounded-xl space-y-4 animate-slide-in"
+              className="relative p-3.5 sm:p-5 bg-slate-950/50 border border-slate-800 rounded-xl space-y-4 animate-slide-in"
             >
               <button
                 type="button"

@@ -29,11 +29,11 @@ const StepIndicator = ({ currentStep, totalSteps = 4 }) => {
           const isCompleted = stepNumber < currentStep;
           const StepIcon = step.icon;
 
-          return (
+            return (
             <div key={index} className="flex flex-col items-center">
               <div 
                 className={`
-                  w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center 
+                  w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center 
                   transition-all duration-300 border-2 z-10 shadow-lg
                   ${isCompleted 
                     ? 'bg-gradient-to-br from-indigo-500 to-purple-600 border-indigo-400 text-white scale-105' 
@@ -43,7 +43,7 @@ const StepIndicator = ({ currentStep, totalSteps = 4 }) => {
                   }
                 `}
               >
-                <StepIcon className="w-5 h-5 md:w-6 md:h-6" />
+                <StepIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
               </div>
               <span 
                 className={`

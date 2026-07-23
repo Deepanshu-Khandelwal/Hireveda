@@ -82,7 +82,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
 
   return (
     <div className="w-full max-w-2xl mx-auto animate-slide-up">
-      <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl p-6 md:p-8 shadow-2xl space-y-6">
+      <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl space-y-6">
         <div>
           <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
             Basic Info

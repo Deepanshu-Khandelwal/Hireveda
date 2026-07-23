@@ -192,7 +192,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
       <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800/85 rounded-2xl overflow-hidden shadow-2xl relative">
         
         {/* Header Block */}
-        <div className="p-6 md:p-8 bg-gradient-to-br from-indigo-950/65 to-slate-900/40 border-b border-slate-800/80 relative group">
+        <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-950/65 to-slate-900/40 border-b border-slate-800/80 relative group">
           <button
             onClick={() => openEditModal('basic')}
             className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-slate-850 hover:bg-indigo-600 border border-slate-800 hover:border-indigo-500 text-slate-400 hover:text-white rounded-lg transition-all shadow-md cursor-pointer"
@@ -236,7 +236,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
         </div>
 
         {/* Dynamic content grid */}
-        <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Left Column: Education & Experience (2 cols) */}
           <div className="md:col-span-2 space-y-8">

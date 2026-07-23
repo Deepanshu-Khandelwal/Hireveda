@@ -31,7 +31,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
       {/* Modal Container */}
       <div className="relative w-full max-w-2xl max-h-[90vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex flex-col z-10 overflow-hidden animate-slide-up">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-800/80">
           <h3 className="text-lg font-semibold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
             {title}
           </h3>
@@ -44,7 +44,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 scrollbar">
           {children}
         </div>
       </div>

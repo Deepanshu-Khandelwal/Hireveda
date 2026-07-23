@@ -72,7 +72,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
   return (
     <div className="w-full max-w-5xl mx-auto space-y-6 animate-slide-up">
       {/* Header bar of list */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900/60 backdrop-blur-md border border-slate-800/80 p-5 rounded-2xl shadow-xl">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900/60 backdrop-blur-md border border-slate-800/80 p-4 sm:p-5 rounded-2xl shadow-xl">
         <div className="space-y-1">
           <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
             <Database className="w-5 h-5 text-indigo-400" /> Database Submissions
