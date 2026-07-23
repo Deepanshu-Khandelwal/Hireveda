@@ -17,7 +17,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/profiles');
+      const response = await fetch('/api/profiles');
       if (response.ok) {
         const data = await response.json();
         setProfiles(data);
@@ -26,7 +26,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
       }
     } catch (err) {
       console.error(err);
-      setError('Unable to connect to the backend server. Make sure it is running on port 5000.');
+      setError('Unable to connect to the backend server. Make sure it is running.');
     } finally {
       setLoading(false);
     }
@@ -43,7 +43,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/profiles/${id}`, {
+      const response = await fetch(`/api/profiles/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {

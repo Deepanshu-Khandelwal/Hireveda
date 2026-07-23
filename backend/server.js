@@ -52,7 +52,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend server is running on port ${PORT}`);
-  console.log(`Test Health Endpoint at http://localhost:${PORT}/api/health`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Backend server is running on port ${PORT}`);
+    console.log(`Test Health Endpoint at http://localhost:${PORT}/api/health`);
+  });
+}
+
+module.exports = app;

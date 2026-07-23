@@ -64,7 +64,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
     setResponseMessage('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/profiles', {
+      const response = await fetch('/api/profiles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
     } catch (err) {
       console.error(err);
       setSubmitStatus('error');
-      setResponseMessage('Unable to connect to the backend server. Make sure it is running on http://localhost:5000.');
+      setResponseMessage('Unable to connect to the backend server. Make sure it is running.');
     }
   };
 
