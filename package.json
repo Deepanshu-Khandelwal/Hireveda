@@ -1,0 +1,24 @@
+{
+  "name": "hireveda-mern-portfolio",
+  "version": "1.0.0",
+  "description": "Full-stack resume portfolio builder with MongoDB integration",
+  "scripts": {
+    "install-all": "npm install --prefix backend && npm install --prefix frontend",
+    "backend": "npm run dev --prefix backend",
+    "frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "mongodb",
+    "express",
+    "tailwind",
+    "portfolio"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
