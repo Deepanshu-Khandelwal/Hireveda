@@ -36,9 +36,10 @@ body {
   font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  overflow: visible;
+  overflow-x: hidden;
   background-color: var(--bg-color);
-  width: auto;
+  width: 100%;
+  max-width: 100%;
   color: var(--text-primary);
 }
 
