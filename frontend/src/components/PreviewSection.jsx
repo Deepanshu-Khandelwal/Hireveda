@@ -16,6 +16,9 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
   // no loadingStage hook
 
   const [validationError, setValidationError] = useState('');
+  const [techInput, setTechInput] = useState('');
+  const [softInput, setSoftInput] = useState('');
+  const [langInput, setLangInput] = useState('');
 
   // Opens the edit modal and creates a deep copy of current data
   const openEditModal = (type) => {
@@ -329,7 +332,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
             <div className="relative group p-4 bg-slate-950/40 border border-slate-850 rounded-xl space-y-6">
               
               <button
-                onClick={() => openEditModal('skills')}
+                onClick={() => openEditModal('basic')}
                 className="absolute top-4 right-4 p-1.5 bg-slate-950/40 hover:bg-indigo-600 text-slate-500 hover:text-white border border-slate-850 hover:border-indigo-500 rounded-md transition-all cursor-pointer"
                 title="Edit Skills & Languages"
               >
@@ -441,66 +444,263 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               <AlertCircle className="w-4 h-4" /> {validationError}
             </div>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <div className="space-y-4 max-h-[380px] overflow-y-auto pr-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-slate-400 text-xs font-semibold mb-1">Full Name *</label>
+                <input
+                  type="text"
+                  value={tempData.fullName || ''}
+                  onChange={(e) => setTempData({ ...tempData, fullName: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="block text-slate-400 text-xs font-semibold mb-1">Professional Title *</label>
+                <input
+                  type="text"
+                  value={tempData.title || ''}
+                  onChange={(e) => setTempData({ ...tempData, title: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-slate-400 text-xs font-semibold mb-1">Email Address *</label>
+                <input
+                  type="email"
+                  value={tempData.email || ''}
+                  onChange={(e) => setTempData({ ...tempData, email: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="block text-slate-400 text-xs font-semibold mb-1">Phone Number *</label>
+                <input
+                  type="text"
+                  value={tempData.phone || ''}
+                  onChange={(e) => setTempData({ ...tempData, phone: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+            </div>
+
             <div>
-              <label className="block text-slate-400 text-xs font-semibold mb-1">Full Name *</label>
+              <label className="block text-slate-400 text-xs font-semibold mb-1">Location</label>
               <input
                 type="text"
-                value={tempData.fullName || ''}
-                onChange={(e) => setTempData({ ...tempData, fullName: e.target.value })}
+                value={tempData.location || ''}
+                onChange={(e) => setTempData({ ...tempData, location: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
               />
             </div>
-            <div>
-              <label className="block text-slate-400 text-xs font-semibold mb-1">Professional Title *</label>
-              <input
-                type="text"
-                value={tempData.title || ''}
-                onChange={(e) => setTempData({ ...tempData, title: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
-              />
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-slate-400 text-xs font-semibold mb-1">Email Address *</label>
-              <input
-                type="email"
-                value={tempData.email || ''}
-                onChange={(e) => setTempData({ ...tempData, email: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
+              <label className="block text-slate-400 text-xs font-semibold mb-1">Bio / Summary</label>
+              <textarea
+                value={tempData.bio || ''}
+                onChange={(e) => setTempData({ ...tempData, bio: e.target.value })}
+                rows="3"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500 resize-none"
               />
             </div>
-            <div>
-              <label className="block text-slate-400 text-xs font-semibold mb-1">Phone Number *</label>
-              <input
-                type="text"
-                value={tempData.phone || ''}
-                onChange={(e) => setTempData({ ...tempData, phone: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
-              />
+
+            {/* Skills & Languages Editing Integration */}
+            <div className="pt-4 border-t border-slate-850 space-y-4">
+              <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Skills & Languages</h4>
+
+              {/* Technical Skills */}
+              <div className="space-y-2">
+                <label className="block text-slate-400 text-xs font-semibold flex items-center gap-1.5">
+                  <Code2 className="w-3.5 h-3.5 text-indigo-400" /> Technical Skills
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={techInput}
+                    onChange={(e) => setTechInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const val = techInput.trim();
+                        if (val) {
+                          const list = tempData.technicalSkills || [];
+                          if (!list.includes(val)) {
+                            setTempData({ ...tempData, technicalSkills: [...list, val] });
+                          }
+                          setTechInput('');
+                        }
+                      }
+                    }}
+                    placeholder="Type and press Enter or Add"
+                    className="flex-1 bg-slate-950 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const val = techInput.trim();
+                      if (val) {
+                        const list = tempData.technicalSkills || [];
+                        if (!list.includes(val)) {
+                          setTempData({ ...tempData, technicalSkills: [...list, val] });
+                        }
+                        setTechInput('');
+                      }
+                    }}
+                    className="p-1.5 bg-indigo-650 text-white rounded text-xs px-3 font-semibold cursor-pointer"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {(tempData.technicalSkills || []).map((skill, idx) => (
+                    <span key={idx} className="flex items-center gap-1 px-2.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs rounded">
+                      {skill}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const list = [...tempData.technicalSkills];
+                          list.splice(idx, 1);
+                          setTempData({ ...tempData, technicalSkills: list });
+                        }}
+                        className="hover:text-pink-500 ml-1 text-[10px] cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Soft Skills */}
+              <div className="space-y-2">
+                <label className="block text-slate-400 text-xs font-semibold flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" /> Soft Skills
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={softInput}
+                    onChange={(e) => setSoftInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const val = softInput.trim();
+                        if (val) {
+                          const list = tempData.softSkills || [];
+                          if (!list.includes(val)) {
+                            setTempData({ ...tempData, softSkills: [...list, val] });
+                          }
+                          setSoftInput('');
+                        }
+                      }
+                    }}
+                    placeholder="Type and press Enter or Add"
+                    className="flex-1 bg-slate-950 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const val = softInput.trim();
+                      if (val) {
+                        const list = tempData.softSkills || [];
+                        if (!list.includes(val)) {
+                          setTempData({ ...tempData, softSkills: [...list, val] });
+                        }
+                        setSoftInput('');
+                      }
+                    }}
+                    className="p-1.5 bg-indigo-650 text-white rounded text-xs px-3 font-semibold cursor-pointer"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {(tempData.softSkills || []).map((skill, idx) => (
+                    <span key={idx} className="flex items-center gap-1 px-2.5 py-0.5 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs rounded">
+                      {skill}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const list = [...tempData.softSkills];
+                          list.splice(idx, 1);
+                          setTempData({ ...tempData, softSkills: list });
+                        }}
+                        className="hover:text-pink-500 ml-1 text-[10px] cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Languages */}
+              <div className="space-y-2">
+                <label className="block text-slate-400 text-xs font-semibold flex items-center gap-1.5">
+                  <Languages className="w-3.5 h-3.5 text-indigo-400" /> Languages
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={langInput}
+                    onChange={(e) => setLangInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const val = langInput.trim();
+                        if (val) {
+                          const list = tempData.languages || [];
+                          if (!list.includes(val)) {
+                            setTempData({ ...tempData, languages: [...list, val] });
+                          }
+                          setLangInput('');
+                        }
+                      }
+                    }}
+                    placeholder="Type and press Enter or Add"
+                    className="flex-1 bg-slate-950 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const val = langInput.trim();
+                      if (val) {
+                        const list = tempData.languages || [];
+                        if (!list.includes(val)) {
+                          setTempData({ ...tempData, languages: [...list, val] });
+                        }
+                        setLangInput('');
+                      }
+                    }}
+                    className="p-1.5 bg-indigo-650 text-white rounded text-xs px-3 font-semibold cursor-pointer"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {(tempData.languages || []).map((lang, idx) => (
+                    <span key={idx} className="flex items-center gap-1 px-2.5 py-0.5 bg-pink-500/10 border border-pink-500/20 text-pink-300 text-xs rounded">
+                      {lang}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const list = [...tempData.languages];
+                          list.splice(idx, 1);
+                          setTempData({ ...tempData, languages: list });
+                        }}
+                        className="hover:text-pink-500 ml-1 text-[10px] cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div>
-            <label className="block text-slate-400 text-xs font-semibold mb-1">Location</label>
-            <input
-              type="text"
-              value={tempData.location || ''}
-              onChange={(e) => setTempData({ ...tempData, location: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-slate-400 text-xs font-semibold mb-1">Bio / Summary</label>
-            <textarea
-              value={tempData.bio || ''}
-              onChange={(e) => setTempData({ ...tempData, bio: e.target.value })}
-              rows="3"
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-indigo-500 resize-none"
-            />
           </div>
 
           <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 pt-2">
@@ -803,211 +1003,6 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
             </button>
           </div>
         </form>
-      </Modal>
-
-      {/* 4. SKILLS & LANGUAGES EDIT MODAL */}
-      <Modal isOpen={activeModal === 'skills'} onClose={handleModalClose} title="Edit Skills & Languages">
-        <div className="space-y-5">
-          {/* Tech skills */}
-          <div className="space-y-2">
-            <label className="block text-slate-400 text-xs font-semibold">Technical Skills</label>
-            <div className="flex gap-2">
-              <input
-                id="modalTechInput"
-                type="text"
-                placeholder="Type and press add button"
-                className="flex-1 bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const val = e.target.value.trim();
-                    if (val) {
-                      const list = tempData.technicalSkills || [];
-                      if (!list.includes(val)) {
-                        setTempData({ ...tempData, technicalSkills: [...list, val] });
-                      }
-                      e.target.value = '';
-                    }
-                  }
-                }}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  const input = document.getElementById('modalTechInput');
-                  const val = input.value.trim();
-                  if (val) {
-                    const list = tempData.technicalSkills || [];
-                    if (!list.includes(val)) {
-                      setTempData({ ...tempData, technicalSkills: [...list, val] });
-                    }
-                    input.value = '';
-                  }
-                }}
-                className="p-1.5 bg-indigo-600 text-white rounded text-xs px-3"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {(tempData.technicalSkills || []).map((skill, idx) => (
-                <span key={idx} className="flex items-center gap-1 px-2 py-0.5 bg-indigo-500/10 text-indigo-400 text-xs rounded">
-                  {skill}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const list = [...tempData.technicalSkills];
-                      list.splice(idx, 1);
-                      setTempData({ ...tempData, technicalSkills: list });
-                    }}
-                    className="hover:text-pink-500 ml-1 text-[10px]"
-                  >
-                    ✕
-                  </button>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Soft skills */}
-          <div className="space-y-2">
-            <label className="block text-slate-400 text-xs font-semibold">Soft Skills</label>
-            <div className="flex gap-2">
-              <input
-                id="modalSoftInput"
-                type="text"
-                placeholder="Type and press add button"
-                className="flex-1 bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const val = e.target.value.trim();
-                    if (val) {
-                      const list = tempData.softSkills || [];
-                      if (!list.includes(val)) {
-                        setTempData({ ...tempData, softSkills: [...list, val] });
-                      }
-                      e.target.value = '';
-                    }
-                  }
-                }}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  const input = document.getElementById('modalSoftInput');
-                  const val = input.value.trim();
-                  if (val) {
-                    const list = tempData.softSkills || [];
-                    if (!list.includes(val)) {
-                      setTempData({ ...tempData, softSkills: [...list, val] });
-                    }
-                    input.value = '';
-                  }
-                }}
-                className="p-1.5 bg-indigo-600 text-white rounded text-xs px-3"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {(tempData.softSkills || []).map((skill, idx) => (
-                <span key={idx} className="flex items-center gap-1 px-2 py-0.5 bg-purple-500/10 text-purple-400 text-xs rounded">
-                  {skill}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const list = [...tempData.softSkills];
-                      list.splice(idx, 1);
-                      setTempData({ ...tempData, softSkills: list });
-                    }}
-                    className="hover:text-pink-500 ml-1 text-[10px]"
-                  >
-                    ✕
-                  </button>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Languages */}
-          <div className="space-y-2">
-            <label className="block text-slate-400 text-xs font-semibold">Languages</label>
-            <div className="flex gap-2">
-              <input
-                id="modalLangInput"
-                type="text"
-                placeholder="Type and press add button"
-                className="flex-1 bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const val = e.target.value.trim();
-                    if (val) {
-                      const list = tempData.languages || [];
-                      if (!list.includes(val)) {
-                        setTempData({ ...tempData, languages: [...list, val] });
-                      }
-                      e.target.value = '';
-                    }
-                  }
-                }}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  const input = document.getElementById('modalLangInput');
-                  const val = input.value.trim();
-                  if (val) {
-                    const list = tempData.languages || [];
-                    if (!list.includes(val)) {
-                      setTempData({ ...tempData, languages: [...list, val] });
-                    }
-                    input.value = '';
-                  }
-                }}
-                className="p-1.5 bg-indigo-600 text-white rounded text-xs px-3"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {(tempData.languages || []).map((lang, idx) => (
-                <span key={idx} className="flex items-center gap-1 px-2 py-0.5 bg-pink-500/10 text-pink-400 text-xs rounded">
-                  {lang}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const list = [...tempData.languages];
-                      list.splice(idx, 1);
-                      setTempData({ ...tempData, languages: list });
-                    }}
-                    className="hover:text-pink-500 ml-1 text-[10px]"
-                  >
-                    ✕
-                  </button>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 pt-4 border-t border-slate-800/60">
-            <button
-              type="button"
-              onClick={handleModalClose}
-              className="px-4 py-2 border border-slate-800 text-slate-400 hover:text-slate-300 text-xs font-semibold rounded-lg cursor-pointer w-full sm:w-auto text-center"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={handleModalSave}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg cursor-pointer w-full sm:w-auto text-center"
-            >
-              Save Changes
-            </button>
-          </div>
-        </div>
       </Modal>
     </div>
   );
