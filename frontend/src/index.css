@@ -38,6 +38,7 @@ body {
   padding: 0;
   overflow: visible;
   background-color: var(--bg-color);
+  width: auto;
   color: var(--text-primary);
 }
 

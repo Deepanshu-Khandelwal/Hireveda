@@ -139,7 +139,7 @@ function App() {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans relative">
       
       {/* Dynamic colorful blobs in the background */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-[-10%] left-[-10%] w-[100%] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-pink-500/10 blur-[120px] pointer-events-none animate-pulse-slow" style={{ animationDelay: '-4s' }} />
 
       {/* Header bar */}
