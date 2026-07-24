@@ -591,8 +591,8 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                     <div>
                       <label className="block text-slate-500 text-[10px] uppercase font-semibold mb-1">Start Date</label>
                       <input
-                        type="text"
-                        value={exp.startDate || ''}
+                        type="date"
+                        value={exp.startDate ? exp.startDate.substring(0, 10) : ''}
                         onChange={(e) => {
                           const list = [...tempData.experience];
                           list[idx].startDate = e.target.value;
@@ -602,17 +602,41 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                       />
                     </div>
                     <div>
-                      <label className="block text-slate-500 text-[10px] uppercase font-semibold mb-1">End Date</label>
-                      <input
-                        type="text"
-                        value={exp.endDate || ''}
-                        onChange={(e) => {
-                          const list = [...tempData.experience];
-                          list[idx].endDate = e.target.value;
-                          setTempData({ ...tempData, experience: list });
-                        }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
-                      />
+                      <div className="flex justify-between items-center mb-1">
+                        <label className="block text-slate-500 text-[10px] uppercase font-semibold">End Date</label>
+                        <label className="inline-flex items-center gap-1.5 text-[10px] text-indigo-400 cursor-pointer select-none">
+                          <input
+                            type="checkbox"
+                            checked={exp.endDate === 'Present'}
+                            onChange={(e) => {
+                              const list = [...tempData.experience];
+                              list[idx].endDate = e.target.checked ? 'Present' : '';
+                              setTempData({ ...tempData, experience: list });
+                            }}
+                            className="rounded border-slate-850 bg-slate-900 text-indigo-600 focus:ring-indigo-500 w-3 h-3"
+                          />
+                          <span>Present</span>
+                        </label>
+                      </div>
+                      {exp.endDate === 'Present' ? (
+                        <input
+                          type="text"
+                          disabled
+                          value="Present"
+                          className="w-full bg-slate-950 border border-slate-800 rounded px-2.5 py-1.5 text-slate-500 text-xs cursor-not-allowed"
+                        />
+                      ) : (
+                        <input
+                          type="date"
+                          value={exp.endDate && exp.endDate !== 'Present' ? exp.endDate.substring(0, 10) : ''}
+                          onChange={(e) => {
+                            const list = [...tempData.experience];
+                            list[idx].endDate = e.target.value;
+                            setTempData({ ...tempData, experience: list });
+                          }}
+                          className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
+                        />
+                      )}
                     </div>
                   </div>
 

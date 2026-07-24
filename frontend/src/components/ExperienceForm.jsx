@@ -121,30 +121,52 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-400" /> Start Date / Year
+                    <Calendar className="w-3.5 h-3.5 text-indigo-400" /> Start Date
                   </label>
                   <input
-                    type="text"
+                    type="date"
                     name="startDate"
-                    value={exp.startDate}
+                    value={exp.startDate ? exp.startDate.substring(0, 10) : ''}
                     onChange={(e) => handleChange(index, e)}
-                    placeholder="e.g. June 2023"
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg px-3.5 py-2 text-slate-200 placeholder-slate-600 text-sm focus:outline-none transition-colors"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg px-3.5 py-2 text-slate-200 text-sm focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-400" /> End Date / Year
-                  </label>
-                  <input
-                    type="text"
-                    name="endDate"
-                    value={exp.endDate}
-                    onChange={(e) => handleChange(index, e)}
-                    placeholder="e.g. Present or Dec 2023"
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg px-3.5 py-2 text-slate-200 placeholder-slate-600 text-sm focus:outline-none transition-colors"
-                  />
+                  <div className="flex justify-between items-center mb-1.5">
+                    <label className="block text-slate-400 text-xs font-medium flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-indigo-400" /> End Date
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 text-xs text-indigo-400 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={exp.endDate === 'Present'}
+                        onChange={(e) => {
+                          const list = [...experiences];
+                          list[index].endDate = e.target.checked ? 'Present' : '';
+                          updateData({ ...data, experience: list });
+                        }}
+                        className="rounded border-slate-800 bg-slate-950 text-indigo-600 focus:ring-indigo-500 w-3.5 h-3.5"
+                      />
+                      <span>Currently Working</span>
+                    </label>
+                  </div>
+                  {exp.endDate === 'Present' ? (
+                    <input
+                      type="text"
+                      disabled
+                      value="Present"
+                      className="w-full bg-slate-900 border border-slate-850 rounded-lg px-3.5 py-2 text-slate-500 text-sm focus:outline-none cursor-not-allowed"
+                    />
+                  ) : (
+                    <input
+                      type="date"
+                      name="endDate"
+                      value={exp.endDate && exp.endDate !== 'Present' ? exp.endDate.substring(0, 10) : ''}
+                      onChange={(e) => handleChange(index, e)}
+                      className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg px-3.5 py-2 text-slate-200 text-sm focus:outline-none transition-colors"
+                    />
+                  )}
                 </div>
               </div>
 
