@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { 
-  User, Mail, Phone, MapPin, Briefcase, FileText, 
-  ArrowLeft, Code2, Sparkles, Languages, Plus, X
-} from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUser, faEnvelope, faPhone, faLocationDot, faBriefcase, faFileLines,
+  faArrowLeft, faCode, faWandSparkles, faLanguage, faPlus, faXmark
+} from '@fortawesome/free-solid-svg-icons';
 
 const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
   const [errors, setErrors] = useState({});
@@ -95,7 +96,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-slate-300 text-sm font-medium mb-2 flex items-center gap-2">
-                <User className="w-4 h-4 text-indigo-400" /> Full Name <span className="text-pink-500">*</span>
+                <FontAwesomeIcon icon={faUser} className="w-4 h-4 text-indigo-400" /> Full Name <span className="text-pink-500">*</span>
               </label>
               <input
                 type="text"
@@ -110,7 +111,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
 
             <div>
               <label className="block text-slate-300 text-sm font-medium mb-2 flex items-center gap-2">
-                <Briefcase className="w-4 h-4 text-indigo-400" /> Professional Title <span className="text-pink-500">*</span>
+                <FontAwesomeIcon icon={faBriefcase} className="w-4 h-4 text-indigo-400" /> Professional Title <span className="text-pink-500">*</span>
               </label>
               <input
                 type="text"
@@ -128,7 +129,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-slate-300 text-sm font-medium mb-2 flex items-center gap-2">
-                <Mail className="w-4 h-4 text-indigo-400" /> Email Address <span className="text-pink-500">*</span>
+                <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 text-indigo-400" /> Email Address <span className="text-pink-500">*</span>
               </label>
               <input
                 type="email"
@@ -143,7 +144,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
 
             <div>
               <label className="block text-slate-300 text-sm font-medium mb-2 flex items-center gap-2">
-                <Phone className="w-4 h-4 text-indigo-400" /> Phone Number <span className="text-pink-500">*</span>
+                <FontAwesomeIcon icon={faPhone} className="w-4 h-4 text-indigo-400" /> Phone Number <span className="text-pink-500">*</span>
               </label>
               <input
                 type="text"
@@ -160,7 +161,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
           {/* Location */}
           <div>
             <label className="block text-slate-300 text-sm font-medium mb-2 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-indigo-400" /> Location
+              <FontAwesomeIcon icon={faLocationDot} className="w-4 h-4 text-indigo-400" /> Location
             </label>
             <input
               type="text"
@@ -175,7 +176,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
           {/* Bio / Summary */}
           <div>
             <label className="block text-slate-300 text-sm font-medium mb-2 flex items-center gap-2">
-              <FileText className="w-4 h-4 text-indigo-400" /> Professional Bio / Summary
+              <FontAwesomeIcon icon={faFileLines} className="w-4 h-4 text-indigo-400" /> Professional Bio / Summary
             </label>
             <textarea
               name="bio"
@@ -196,7 +197,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
             {/* Technical Skills */}
             <div className="space-y-3">
               <label className="block text-slate-300 text-xs font-medium flex items-center gap-2">
-                <Code2 className="w-3.5 h-3.5 text-indigo-400" /> Technical Skills <span className="text-slate-500 font-normal">(Press Enter to add)</span>
+                <FontAwesomeIcon icon={faCode} className="w-3.5 h-3.5 text-indigo-400" /> Technical Skills <span className="text-slate-500 font-normal">(Press Enter to add)</span>
               </label>
               <div className="flex gap-2">
                 <input
@@ -212,7 +213,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                   onClick={() => addTag('technicalSkills', techInput, setTechInput)}
                   className="p-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors cursor-pointer"
                 >
-                  <Plus className="w-4 h-4" />
+                  <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />
                 </button>
               </div>
               
@@ -252,7 +253,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                       onClick={() => removeTag('technicalSkills', index)}
                       className="hover:text-pink-500 rounded-full transition-colors cursor-pointer"
                     >
-                      <X className="w-2.5 h-2.5" />
+                      <FontAwesomeIcon icon={faXmark} className="w-2.5 h-2.5" />
                     </button>
                   </span>
                 ))}
@@ -262,7 +263,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
             {/* Soft Skills */}
             <div className="space-y-3">
               <label className="block text-slate-300 text-xs font-medium flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-indigo-400" /> Soft Skills <span className="text-slate-500 font-normal">(Press Enter to add)</span>
+                <FontAwesomeIcon icon={faWandSparkles} className="w-3.5 h-3.5 text-indigo-400" /> Soft Skills <span className="text-slate-500 font-normal">(Press Enter to add)</span>
               </label>
               <div className="flex gap-2">
                 <input
@@ -278,7 +279,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                   onClick={() => addTag('softSkills', softInput, setSoftInput)}
                   className="p-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors cursor-pointer"
                 >
-                  <Plus className="w-4 h-4" />
+                  <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />
                 </button>
               </div>
 
@@ -317,7 +318,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                       onClick={() => removeTag('softSkills', index)}
                       className="hover:text-pink-500 rounded-full transition-colors cursor-pointer"
                     >
-                      <X className="w-2.5 h-2.5" />
+                      <FontAwesomeIcon icon={faXmark} className="w-2.5 h-2.5" />
                     </button>
                   </span>
                 ))}
@@ -327,7 +328,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
             {/* Languages */}
             <div className="space-y-3">
               <label className="block text-slate-300 text-xs font-medium flex items-center gap-2">
-                <Languages className="w-3.5 h-3.5 text-indigo-400" /> Languages <span className="text-slate-500 font-normal">(Press Enter to add)</span>
+                <FontAwesomeIcon icon={faLanguage} className="w-3.5 h-3.5 text-indigo-400" /> Languages <span className="text-slate-500 font-normal">(Press Enter to add)</span>
               </label>
               <div className="flex gap-2">
                 <input
@@ -343,7 +344,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                   onClick={() => addTag('languages', langInput, setLangInput)}
                   className="p-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors cursor-pointer"
                 >
-                  <Plus className="w-4 h-4" />
+                  <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />
                 </button>
               </div>
 
@@ -382,7 +383,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                       onClick={() => removeTag('languages', index)}
                       className="hover:text-pink-500 rounded-full transition-colors cursor-pointer"
                     >
-                      <X className="w-2.5 h-2.5" />
+                      <FontAwesomeIcon icon={faXmark} className="w-2.5 h-2.5" />
                     </button>
                   </span>
                 ))}
@@ -399,7 +400,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                   onClick={onPrev}
                   className="flex items-center justify-center gap-1.5 px-4 py-2 border border-slate-850 hover:bg-slate-950/40 text-slate-400 hover:text-slate-300 text-sm font-medium rounded-lg transition-colors cursor-pointer w-full sm:w-auto text-center"
                 >
-                  <ArrowLeft className="w-4 h-4" /> Back
+                  <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" /> Back
                 </button>
                 <button
                   type="submit"

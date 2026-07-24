@@ -1,17 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  User, Mail, Phone, MapPin, Briefcase, GraduationCap, Code2, 
-  Trash2, Edit, Eye, AlertCircle, RefreshCw, ArrowLeft, Search, Database,
-  Sparkles, Plus
-} from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUser, faEnvelope, faPhone, faLocationDot, faBriefcase, faGraduationCap, faCode,
+  faTrash, faPen, faEye, faCircleExclamation, faArrowsRotate, faArrowLeft, faMagnifyingGlass,
+  faDatabase, faWandSparkles, faPlus
+} from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
 
+const STORAGE_KEY = 'hireveda-submissions';
+
+const loadStoredProfiles = () => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch (err) {
+    console.warn('Unable to read saved submissions:', err);
+    return [];
+  }
+};
+
 const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
-  const [profiles, setProfiles] = useState([]);
+  const [profiles, setProfiles] = useState(loadStoredProfiles);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [viewingProfile, setViewingProfile] = useState(null);
+
+  const syncProfiles = (nextProfiles) => {
+    setProfiles(nextProfiles);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextProfiles));
+    }
+  };
 
   const fetchProfiles = async () => {
     setLoading(true);
@@ -20,13 +41,21 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
       const response = await fetch('/api/profiles');
       if (response.ok) {
         const data = await response.json();
-        setProfiles(data);
-      } else {
-        setError('Failed to retrieve profiles from the server.');
+        const nextProfiles = Array.isArray(data) ? data : [];
+        syncProfiles(nextProfiles);
+        return;
       }
+
+      throw new Error('Failed to retrieve profiles from the server.');
     } catch (err) {
-      console.error(err);
-      setError('Unable to connect to the backend server. Make sure it is running.');
+      console.warn('Using locally saved submissions because the API is unavailable:', err);
+      const storedProfiles = loadStoredProfiles();
+      if (storedProfiles.length > 0) {
+        syncProfiles(storedProfiles);
+        setError('Showing locally saved entries while the server is unavailable.');
+      } else {
+        setError('Unable to connect to the backend server. Make sure it is running.');
+      }
     } finally {
       setLoading(false);
     }
@@ -47,7 +76,8 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
         method: 'DELETE',
       });
       if (response.ok) {
-        setProfiles(profiles.filter(p => p._id !== id));
+        const nextProfiles = profiles.filter(p => p._id !== id);
+        syncProfiles(nextProfiles);
         if (viewingProfile && viewingProfile._id === id) {
           setViewingProfile(null);
         }
@@ -75,7 +105,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900/60 backdrop-blur-md border border-slate-800/80 p-4 sm:p-5 rounded-2xl shadow-xl">
         <div className="space-y-1">
           <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <Database className="w-5 h-5 text-indigo-400" /> Database Submissions
+            <FontAwesomeIcon icon={faDatabase} className="w-5 h-5 text-indigo-400" /> Database Submissions
           </h2>
           <p className="text-xs text-slate-400">View and manage all portfolio profiles saved in MongoDB Atlas.</p>
         </div>
@@ -84,7 +114,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
           {/* Search bar & Refresh Button Group */}
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <div className="relative flex-1 sm:flex-initial">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+              <FontAwesomeIcon icon={faMagnifyingGlass} className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
               <input
                 type="text"
                 placeholder="Search by name, title, skill..."
@@ -98,7 +128,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
               className="p-2 bg-slate-950/50 hover:bg-slate-800 border border-slate-850 text-slate-400 hover:text-white rounded-lg transition-colors cursor-pointer shrink-0"
               title="Refresh database entries"
             >
-              <RefreshCw className="w-4 h-4" />
+              <FontAwesomeIcon icon={faArrowsRotate} className="w-4 h-4" />
             </button>
           </div>
 
@@ -106,7 +136,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
             onClick={onBackToForm}
             className="flex items-center justify-center gap-1.5 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white text-xs font-semibold rounded-lg shadow cursor-pointer transition-all active:scale-98 w-full sm:w-auto text-center"
           >
-            <Plus className="w-3.5 h-3.5" /> Create Profile
+            <FontAwesomeIcon icon={faPlus} className="w-3.5 h-3.5" /> Create Profile
           </button>
         </div>
       </div>
@@ -122,7 +152,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
       {/* Error State */}
       {!loading && error && (
         <div className="p-5 bg-pink-500/10 border border-pink-500/20 rounded-2xl text-center space-y-3 text-pink-400 max-w-lg mx-auto">
-          <AlertCircle className="w-8 h-8 text-pink-500 mx-auto" />
+          <FontAwesomeIcon icon={faCircleExclamation} className="w-8 h-8 text-pink-500 mx-auto" />
           <p className="text-sm font-medium">{error}</p>
           <button 
             onClick={fetchProfiles}
@@ -138,7 +168,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
         <>
           {filteredProfiles.length === 0 ? (
             <div className="py-16 text-center border border-dashed border-slate-800 rounded-2xl space-y-4">
-              <User className="w-10 h-10 text-slate-700 mx-auto" />
+              <FontAwesomeIcon icon={faUser} className="w-10 h-10 text-slate-700 mx-auto" />
               <p className="text-slate-400 text-sm font-medium">
                 {searchTerm ? 'No profiles match your search filters.' : 'No profiles found in the database.'}
               </p>
@@ -170,14 +200,14 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
                     {/* Contacts info list */}
                     <div className="space-y-1 text-xs text-slate-400">
                       <div className="flex items-center gap-1.5">
-                        <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" /> <span className="truncate">{p.email}</span>
+                        <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5 text-slate-500 shrink-0" /> <span className="truncate">{p.email}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Phone className="w-3.5 h-3.5 text-slate-500 shrink-0" /> <span>{p.phone}</span>
+                        <FontAwesomeIcon icon={faPhone} className="w-3.5 h-3.5 text-slate-500 shrink-0" /> <span>{p.phone}</span>
                       </div>
                       {p.location && (
                         <div className="flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" /> <span className="truncate">{p.location}</span>
+                          <FontAwesomeIcon icon={faLocationDot} className="w-3.5 h-3.5 text-slate-500 shrink-0" /> <span className="truncate">{p.location}</span>
                         </div>
                       )}
                     </div>
@@ -205,7 +235,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
                       onClick={() => setViewingProfile(p)}
                       className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-md active:scale-95 transition-all duration-150 cursor-pointer"
                     >
-                      <Eye className="w-3.5 h-3.5" /> View Resume Details
+                      <FontAwesomeIcon icon={faEye} className="w-3.5 h-3.5" /> View Resume Details
                     </button>
                     
                     <div className="flex items-center gap-2">
@@ -214,14 +244,14 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
                         className="p-1.5 text-slate-500 hover:text-indigo-400 hover:bg-indigo-500/10 rounded transition-all cursor-pointer"
                         title="Edit profile data"
                       >
-                        <Edit className="w-3.5 h-3.5" />
+                        <FontAwesomeIcon icon={faPen} className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={(e) => handleDelete(p._id, p.fullName, e)}
                         className="p-1.5 text-slate-500 hover:text-pink-500 hover:bg-pink-500/10 rounded transition-all cursor-pointer"
                         title="Delete profile entry"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <FontAwesomeIcon icon={faTrash} className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
@@ -246,10 +276,10 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
               <p className="text-indigo-400 text-sm font-semibold">{viewingProfile.title}</p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-400 mt-3">
-                <span className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5 text-indigo-500" /> {viewingProfile.email}</span>
-                <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5 text-indigo-500" /> {viewingProfile.phone}</span>
+                <span className="flex items-center gap-1.5"><FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5 text-indigo-500" /> {viewingProfile.email}</span>
+                <span className="flex items-center gap-1.5"><FontAwesomeIcon icon={faPhone} className="w-3.5 h-3.5 text-indigo-500" /> {viewingProfile.phone}</span>
                 {viewingProfile.location && (
-                  <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-indigo-500" /> {viewingProfile.location}</span>
+                  <span className="flex items-center gap-1.5"><FontAwesomeIcon icon={faLocationDot} className="w-3.5 h-3.5 text-indigo-500" /> {viewingProfile.location}</span>
                 )}
               </div>
 
@@ -264,7 +294,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
             {viewingProfile.experience && viewingProfile.experience.length > 0 && (
               <div className="space-y-2">
                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Briefcase className="w-3.5 h-3.5 text-indigo-400" /> Work Experience
+                  <FontAwesomeIcon icon={faBriefcase} className="w-3.5 h-3.5 text-indigo-400" /> Work Experience
                 </h4>
                 <div className="space-y-3">
                   {viewingProfile.experience.map((exp, idx) => (
@@ -284,7 +314,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
             {viewingProfile.education && viewingProfile.education.length > 0 && (
               <div className="space-y-2 pt-2 border-t border-slate-850/60">
                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <GraduationCap className="w-3.5 h-3.5 text-indigo-400" /> Education
+                  <FontAwesomeIcon icon={faGraduationCap} className="w-3.5 h-3.5 text-indigo-400" /> Education
                 </h4>
                 <div className="space-y-3">
                   {viewingProfile.education.map((edu, idx) => (
@@ -307,7 +337,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
             <div className="space-y-3 pt-4 border-t border-slate-850/60">
               {viewingProfile.technicalSkills && viewingProfile.technicalSkills.length > 0 && (
                 <div className="space-y-1.5">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1"><Code2 className="w-3 h-3 text-indigo-400" /> Tech Skills</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1"><FontAwesomeIcon icon={faCode} className="w-3 h-3 text-indigo-400" /> Tech Skills</span>
                   <div className="flex flex-wrap gap-1">
                     {viewingProfile.technicalSkills.map((t, idx) => (
                       <span key={idx} className="px-2 py-0.5 bg-indigo-500/10 text-indigo-400 text-xs rounded">{t}</span>
@@ -318,7 +348,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
 
               {viewingProfile.softSkills && viewingProfile.softSkills.length > 0 && (
                 <div className="space-y-1.5">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1"><Sparkles className="w-3 h-3 text-purple-400" /> Soft Skills</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1"><FontAwesomeIcon icon={faWandSparkles} className="w-3 h-3 text-purple-400" /> Soft Skills</span>
                   <div className="flex flex-wrap gap-1">
                     {viewingProfile.softSkills.map((s, idx) => (
                       <span key={idx} className="px-2 py-0.5 bg-purple-500/10 text-purple-400 text-xs rounded">{s}</span>

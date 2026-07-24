@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = ({ isOpen, onClose, title, children }) => {
   useEffect(() => {
@@ -39,7 +40,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
             onClick={onClose}
             className="p-1.5 text-slate-500 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <FontAwesomeIcon icon={faXmark} className="w-5 h-5" />
           </button>
         </div>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Code2, Sparkles, Languages, Plus, X, ArrowLeft } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCode, faSparkles, faLanguage, faPlus, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
   const [techInput, setTechInput] = useState('');
@@ -47,7 +48,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
         {/* Technical Skills */}
         <div className="space-y-3">
           <label className="block text-slate-300 text-sm font-medium flex items-center gap-2">
-            <Code2 className="w-4 h-4 text-indigo-400" /> Technical Skills
+            <FontAwesomeIcon icon={faCode} className="w-4 h-4 text-indigo-400" /> Technical Skills
           </label>
           <div className="flex gap-2">
             <input
@@ -63,7 +64,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
               onClick={() => addTag('technicalSkills', techInput, setTechInput)}
               className="p-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors cursor-pointer"
             >
-              <Plus className="w-5 h-5" />
+              <FontAwesomeIcon icon={faPlus} className="w-5 h-5" />
             </button>
           </div>
           <div className="flex flex-wrap gap-2 pt-1.5">
@@ -78,7 +79,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
                   onClick={() => removeTag('technicalSkills', index)}
                   className="hover:text-pink-500 rounded-full transition-colors cursor-pointer"
                 >
-                  <X className="w-3 h-3" />
+                  <FontAwesomeIcon icon={faXmark} className="w-3 h-3" />
                 </button>
               </span>
             ))}
@@ -89,7 +90,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
         {/* Soft Skills */}
         <div className="space-y-3">
           <label className="block text-slate-300 text-sm font-medium flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-indigo-400" /> Soft Skills
+            <FontAwesomeIcon icon={faSparkles} className="w-4 h-4 text-indigo-400" /> Soft Skills
           </label>
           <div className="flex gap-2">
             <input
@@ -105,7 +106,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
               onClick={() => addTag('softSkills', softInput, setSoftInput)}
               className="p-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors cursor-pointer"
             >
-              <Plus className="w-5 h-5" />
+              <FontAwesomeIcon icon={faPlus} className="w-5 h-5" />
             </button>
           </div>
           <div className="flex flex-wrap gap-2 pt-1.5">
@@ -120,7 +121,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
                   onClick={() => removeTag('softSkills', index)}
                   className="hover:text-pink-500 rounded-full transition-colors cursor-pointer"
                 >
-                  <X className="w-3 h-3" />
+                  <FontAwesomeIcon icon={faXmark} className="w-3 h-3" />
                 </button>
               </span>
             ))}
@@ -131,7 +132,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
         {/* Languages */}
         <div className="space-y-3">
           <label className="block text-slate-300 text-sm font-medium flex items-center gap-2">
-            <Languages className="w-4 h-4 text-indigo-400" /> Languages
+            <FontAwesomeIcon icon={faLanguage} className="w-4 h-4 text-indigo-400" /> Languages
           </label>
           <div className="flex gap-2">
             <input
@@ -147,7 +148,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
               onClick={() => addTag('languages', langInput, setLangInput)}
               className="p-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors cursor-pointer"
             >
-              <Plus className="w-5 h-5" />
+              <FontAwesomeIcon icon={faPlus} className="w-5 h-5" />
             </button>
           </div>
           <div className="flex flex-wrap gap-2 pt-1.5">
@@ -162,7 +163,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
                   onClick={() => removeTag('languages', index)}
                   className="hover:text-pink-500 rounded-full transition-colors cursor-pointer"
                 >
-                  <X className="w-3 h-3" />
+                  <FontAwesomeIcon icon={faXmark} className="w-3 h-3" />
                 </button>
               </span>
             ))}
@@ -179,7 +180,7 @@ const SkillsForm = ({ data, updateData, onNext, onPrev }) => {
             onClick={onPrev}
             className="flex items-center gap-1.5 px-4 py-2 border border-slate-850 hover:bg-slate-950/40 text-slate-400 hover:text-slate-300 text-sm font-medium rounded-lg transition-colors cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4" /> Back
+            <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" /> Back
           </button>
         )}
         <button

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Briefcase, Calendar, FileText, Plus, Trash2, ArrowLeft, Building2, AlertCircle } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase, faCalendarDays, faFileLines, faPlus, faTrash, faArrowLeft, faBuilding, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
   const [error, setError] = useState('');
@@ -43,19 +44,19 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
           onClick={handleAdd}
           className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/30 hover:bg-indigo-500/20 text-indigo-400 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
         >
-          <Plus className="w-3.5 h-3.5" /> Add Job
+          <FontAwesomeIcon icon={faPlus} className="w-3.5 h-3.5" /> Add Job
         </button>
       </div>
 
       {error && (
         <div className="mb-4 p-3.5 bg-pink-500/10 border border-pink-500/30 rounded-xl text-pink-500 text-xs flex items-center gap-1.5 animate-pulse-slow">
-          <AlertCircle className="w-4 h-4 text-slate-400" /> {error}
+          <FontAwesomeIcon icon={faCircleExclamation} className="w-4 h-4 text-slate-400" /> {error}
         </div>
       )}
 
       {experiences.length === 0 ? (
         <div className="border border-dashed border-slate-800 rounded-xl p-6 sm:p-8 text-center my-6">
-          <Briefcase className="w-8 h-8 text-slate-600 mx-auto mb-2" />
+          <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8 text-slate-600 mx-auto mb-2" />
           <p className="text-slate-400 text-sm font-medium">No experience added yet.</p>
           <p className="text-slate-500 text-xs mt-1">If you are a fresher or have no corporate experience, you can skip this step.</p>
           <button
@@ -79,7 +80,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
                 className="absolute top-4 right-4 p-1 text-slate-500 hover:text-pink-500 hover:bg-pink-500/10 rounded-lg transition-all cursor-pointer"
                 title="Remove Job"
               >
-                <Trash2 className="w-4 h-4" />
+                <FontAwesomeIcon icon={faTrash} className="w-4 h-4" />
               </button>
 
               <div className="text-xs text-indigo-400 font-semibold uppercase tracking-wider">
@@ -90,7 +91,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5 text-indigo-400" /> Company Name
+                    <FontAwesomeIcon icon={faBuilding} className="w-3.5 h-3.5 text-indigo-400" /> Company Name
                   </label>
                   <input
                     type="text"
@@ -104,7 +105,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
 
                 <div>
                   <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                    <Briefcase className="w-3.5 h-3.5 text-indigo-400" /> Role / Title
+                    <FontAwesomeIcon icon={faBriefcase} className="w-3.5 h-3.5 text-indigo-400" /> Role / Title
                   </label>
                   <input
                     type="text"
@@ -121,7 +122,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-400" /> Start Date
+                    <FontAwesomeIcon icon={faCalendarDays} className="w-3.5 h-3.5 text-indigo-400" /> Start Date
                   </label>
                   <input
                     type="date"
@@ -135,7 +136,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
                     <label className="block text-slate-400 text-xs font-medium flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-indigo-400" /> End Date
+                      <FontAwesomeIcon icon={faCalendarDays} className="w-3.5 h-3.5 text-indigo-400" /> End Date
                     </label>
                     <label className="inline-flex items-center gap-1.5 text-xs text-indigo-400 cursor-pointer select-none">
                       <input
@@ -173,7 +174,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
               {/* Description */}
               <div>
                 <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-indigo-400" /> Key Responsibilities / Description
+                  <FontAwesomeIcon icon={faFileLines} className="w-3.5 h-3.5 text-indigo-400" /> Key Responsibilities / Description
                 </label>
                 <textarea
                   name="description"
@@ -196,7 +197,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
           onClick={onPrev}
           className="flex items-center justify-center gap-1.5 px-4 py-2 border border-slate-850 hover:bg-slate-950/40 text-slate-400 hover:text-slate-300 text-sm font-medium rounded-lg transition-colors cursor-pointer w-full sm:w-auto text-center"
         >
-          <ArrowLeft className="w-4 h-4" /> Back
+          <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" /> Back
         </button>
         <button
           type="button"

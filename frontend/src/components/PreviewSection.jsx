@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { 
-  User, Mail, Phone, MapPin, Briefcase, GraduationCap, Code2, 
-  Sparkles, Languages, Edit, Send, ArrowLeft, CheckCircle2, 
-  XCircle, AlertCircle, Plus, Trash2, Calendar, Building, Building2, FileText, Info
-} from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUser, faEnvelope, faPhone, faLocationDot, faBriefcase, faGraduationCap, faCode,
+  faWandSparkles, faLanguage, faPen, faPaperPlane, faArrowLeft, faCircleCheck, faCircleXmark,
+  faCircleExclamation, faPlus, faTrash, faCalendarDays, faBuilding, faFileLines
+} from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
 // no confetti import
 
@@ -103,7 +104,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
         <div className="relative w-20 h-20 mx-auto">
           <div className="absolute inset-0 bg-emerald-500/20 rounded-full animate-ping" />
           <div className="relative w-20 h-20 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400 animate-slide-in">
-            <CheckCircle2 className="w-10 h-10" />
+            <FontAwesomeIcon icon={faCircleCheck} className="w-10 h-10" />
           </div>
         </div>
 
@@ -148,7 +149,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
         <div className="relative w-20 h-20 mx-auto">
           <div className="absolute inset-0 bg-pink-500/20 rounded-full animate-ping" />
           <div className="relative w-20 h-20 bg-pink-500/10 border border-pink-500/30 rounded-full flex items-center justify-center text-pink-400">
-            <XCircle className="w-10 h-10" />
+            <FontAwesomeIcon icon={faCircleXmark} className="w-10 h-10" />
           </div>
         </div>
 
@@ -192,47 +193,51 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
       )}
 
       {/* Main Resume Sheet */}
-      <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800/85 rounded-2xl overflow-hidden shadow-2xl relative">
+      <div className="bg-[color:var(--card-bg)]/95 backdrop-blur-xl border border-[color:var(--card-border)] rounded-[1.5rem] overflow-hidden shadow-[0_25px_80px_rgba(15,23,42,0.12)] relative">
         <div className="h-1.5 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
         
         {/* Header Block */}
-        <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-950/40 to-slate-900/20 border-b border-slate-800/60 relative group">
+        <div className="relative overflow-hidden p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-500/10 via-transparent to-purple-500/10 border-b border-[color:var(--card-border)] group">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(99,102,241,0.18),_transparent_45%)]" />
           <button
             onClick={() => openEditModal('basic')}
             className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-slate-850 hover:bg-indigo-600 border border-slate-800 hover:border-indigo-500 text-slate-400 hover:text-white rounded-lg transition-all shadow-md cursor-pointer"
             title="Edit Header Section"
           >
-            <Edit className="w-4 h-4" />
+            <FontAwesomeIcon icon={faPen} className="w-4 h-4" />
           </button>
 
-          <div className="w-full space-y-3.5 text-left">
-            <div>
-              <h1 className="text-2xl md:text-3.5xl font-bold text-slate-100 tracking-tight">
+          <div className="relative w-full space-y-3.5 text-left">
+            <div className="flex flex-col gap-2">
+              <div className="inline-flex w-fit items-center rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-indigo-500">
+                Professional Portfolio
+              </div>
+              <h1 className="text-2xl md:text-3.5xl font-bold text-[color:var(--text-primary)] tracking-tight">
                 {data.fullName || 'Full Name'}
               </h1>
-              <p className="text-indigo-400 font-semibold text-sm md:text-base mt-1">
+              <p className="text-indigo-500 font-semibold text-sm md:text-base">
                 {data.title || 'Professional Title'}
               </p>
             </div>
 
             {/* Contacts info row */}
-            <div className="flex flex-wrap items-center gap-4 text-xs md:text-sm text-slate-400 w-full min-w-0">
-              <span className="flex items-center gap-1.5 min-w-0 break-all">
-                <Mail className="w-4 h-4 text-indigo-500 shrink-0" /> {data.email || 'email@example.com'}
+            <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-[color:var(--text-secondary)] w-full min-w-0">
+              <span className="flex items-center gap-1.5 rounded-full border border-[color:var(--card-border)] bg-[color:var(--input-bg)]/80 px-3 py-1.5 min-w-0 break-all">
+                <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 text-indigo-500 shrink-0" /> {data.email || 'email@example.com'}
               </span>
-              <span className="flex items-center gap-1.5 min-w-0 break-all">
-                <Phone className="w-4 h-4 text-indigo-500 shrink-0" /> {data.phone || '+91 99999 99999'}
+              <span className="flex items-center gap-1.5 rounded-full border border-[color:var(--card-border)] bg-[color:var(--input-bg)]/80 px-3 py-1.5 min-w-0 break-all">
+                <FontAwesomeIcon icon={faPhone} className="w-4 h-4 text-indigo-500 shrink-0" /> {data.phone || '+91 99999 99999'}
               </span>
               {data.location && (
-                <span className="flex items-center gap-1.5 min-w-0 break-all">
-                  <MapPin className="w-4 h-4 text-indigo-500 shrink-0" /> {data.location}
+                <span className="flex items-center gap-1.5 rounded-full border border-[color:var(--card-border)] bg-[color:var(--input-bg)]/80 px-3 py-1.5 min-w-0 break-all">
+                  <FontAwesomeIcon icon={faLocationDot} className="w-4 h-4 text-indigo-500 shrink-0" /> {data.location}
                 </span>
               )}
             </div>
 
             {/* Bio summary */}
             {data.bio && (
-              <p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-3xl pt-2.5 border-t border-slate-800/40">
+              <p className="text-[color:var(--text-secondary)] text-xs md:text-sm leading-relaxed max-w-3xl pt-3 border-t border-[color:var(--card-border)]">
                 {data.bio}
               </p>
             )}
@@ -246,36 +251,36 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
           <div className="md:col-span-2 space-y-8">
             
             {/* Experience Block */}
-            <div className="relative group">
-              <div className="flex justify-between items-center mb-4 pb-2 border-b border-slate-800/60">
-                <h2 className="text-lg font-bold text-slate-200 flex items-center gap-2">
-                  <Briefcase className="w-4 h-4 text-indigo-400" /> Professional Experience
+            <div className="relative group rounded-2xl border border-[color:var(--card-border)] bg-[color:var(--input-bg)]/70 p-4 sm:p-5 shadow-sm">
+              <div className="flex justify-between items-center mb-4 pb-2 border-b border-[color:var(--card-border)]">
+                <h2 className="text-lg font-bold text-[color:var(--text-primary)] flex items-center gap-2">
+                  <FontAwesomeIcon icon={faBriefcase} className="w-4 h-4 text-indigo-400" /> Professional Experience
                 </h2>
                 <button
                   onClick={() => openEditModal('experience')}
                   className="p-1.5 bg-slate-950/40 hover:bg-indigo-600 text-slate-500 hover:text-white border border-slate-850 hover:border-indigo-500 rounded-md transition-all cursor-pointer"
                   title="Edit Experience"
                 >
-                  <Edit className="w-3.5 h-3.5" />
+                  <FontAwesomeIcon icon={faPen} className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               {(!data.experience || data.experience.length === 0) ? (
-                <p className="text-slate-500 text-sm italic">Fresher / No prior experience listed.</p>
+                <p className="text-[color:var(--text-secondary)] text-sm italic">Fresher / No prior experience listed.</p>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {data.experience.map((exp, idx) => (
-                    <div key={idx} className="space-y-1">
-                      <div className="flex justify-between items-start flex-wrap gap-1">
-                        <h3 className="font-semibold text-slate-300 text-sm md:text-base">
-                          {exp.role} <span className="text-indigo-400">@ {exp.company}</span>
+                    <div key={idx} className="rounded-xl border border-[color:var(--card-border)] bg-[color:var(--card-bg)]/70 p-3.5 shadow-sm">
+                      <div className="flex justify-between items-start flex-wrap gap-2">
+                        <h3 className="font-semibold text-[color:var(--text-primary)] text-sm md:text-base">
+                          {exp.role} <span className="text-indigo-500">@ {exp.company}</span>
                         </h3>
-                        <span className="text-xs text-slate-500 font-medium">
+                        <span className="rounded-full border border-indigo-500/20 bg-indigo-500/10 px-2.5 py-1 text-[11px] font-semibold text-indigo-500">
                           {exp.startDate} - {exp.endDate}
                         </span>
                       </div>
                       {exp.description && (
-                        <p className="text-slate-400 text-xs md:text-sm leading-relaxed whitespace-pre-line pl-1.5 border-l border-slate-800">
+                        <p className="mt-2 text-[color:var(--text-secondary)] text-xs md:text-sm leading-relaxed whitespace-pre-line pl-1.5 border-l border-[color:var(--card-border)]">
                           {exp.description}
                         </p>
                       )}
@@ -286,36 +291,36 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
             </div>
 
             {/* Education Block */}
-            <div className="relative group">
-              <div className="flex justify-between items-center mb-4 pb-2 border-b border-slate-800/60">
-                <h2 className="text-lg font-bold text-slate-200 flex items-center gap-2">
-                  <GraduationCap className="w-4 h-4 text-indigo-400" /> Education
+            <div className="relative group rounded-2xl border border-[color:var(--card-border)] bg-[color:var(--input-bg)]/70 p-4 sm:p-5 shadow-sm">
+              <div className="flex justify-between items-center mb-4 pb-2 border-b border-[color:var(--card-border)]">
+                <h2 className="text-lg font-bold text-[color:var(--text-primary)] flex items-center gap-2">
+                  <FontAwesomeIcon icon={faGraduationCap} className="w-4 h-4 text-indigo-400" /> Education
                 </h2>
                 <button
                   onClick={() => openEditModal('education')}
                   className="p-1.5 bg-slate-950/40 hover:bg-indigo-600 text-slate-500 hover:text-white border border-slate-850 hover:border-indigo-500 rounded-md transition-all cursor-pointer"
                   title="Edit Education"
                 >
-                  <Edit className="w-3.5 h-3.5" />
+                  <FontAwesomeIcon icon={faPen} className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               {(!data.education || data.education.length === 0) ? (
-                <p className="text-slate-500 text-sm italic">No education details listed.</p>
+                <p className="text-[color:var(--text-secondary)] text-sm italic">No education details listed.</p>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {data.education.map((edu, idx) => (
-                    <div key={idx} className="space-y-1">
-                      <div className="flex justify-between items-start flex-wrap gap-1">
-                        <h3 className="font-semibold text-slate-300 text-sm">
+                    <div key={idx} className="rounded-xl border border-[color:var(--card-border)] bg-[color:var(--card-bg)]/70 p-3.5 shadow-sm">
+                      <div className="flex justify-between items-start flex-wrap gap-2">
+                        <h3 className="font-semibold text-[color:var(--text-primary)] text-sm">
                           {edu.degree}
                         </h3>
-                        <span className="text-xs text-slate-500 font-medium">{edu.passingYear}</span>
+                        <span className="rounded-full border border-indigo-500/20 bg-indigo-500/10 px-2.5 py-1 text-[11px] font-semibold text-indigo-500">{edu.passingYear}</span>
                       </div>
-                      <div className="flex justify-between items-center text-xs text-slate-400">
+                      <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-[color:var(--text-secondary)]">
                         <span>{edu.institution}</span>
                         {edu.grade && (
-                          <span className="bg-indigo-500/10 px-2 py-0.5 rounded text-indigo-400">
+                          <span className="rounded-full border border-indigo-500/20 bg-indigo-500/10 px-2.5 py-1 text-indigo-500">
                             Grade: {edu.grade}
                           </span>
                         )}
@@ -329,25 +334,25 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
 
           {/* Right Column: Skills & Languages (1 col) */}
           <div className="space-y-6">
-            <div className="relative group p-4 bg-slate-950/40 border border-slate-850 rounded-xl space-y-6">
+            <div className="relative group p-4 sm:p-5 rounded-2xl border border-[color:var(--card-border)] bg-[color:var(--input-bg)]/70 space-y-6 shadow-sm">
               
               <button
                 onClick={() => openEditModal('basic')}
                 className="absolute top-4 right-4 p-1.5 bg-slate-950/40 hover:bg-indigo-600 text-slate-500 hover:text-white border border-slate-850 hover:border-indigo-500 rounded-md transition-all cursor-pointer"
                 title="Edit Skills & Languages"
               >
-                <Edit className="w-3.5 h-3.5" />
+                <FontAwesomeIcon icon={faPen} className="w-3.5 h-3.5" />
               </button>
 
               {/* Technical Skills */}
               <div className="space-y-2">
                 <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Code2 className="w-3.5 h-3.5 text-indigo-400" /> Technical Skills
+                  <FontAwesomeIcon icon={faCode} className="w-3.5 h-3.5 text-indigo-400" /> Technical Skills
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {data.technicalSkills && data.technicalSkills.length > 0 ? (
                     data.technicalSkills.map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs rounded font-semibold">
+                      <span key={idx} className="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 text-xs rounded-full font-semibold">
                         {tag}
                       </span>
                     ))
@@ -360,12 +365,12 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               {/* Soft Skills */}
               <div className="space-y-2">
                 <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" /> Soft Skills
+                  <FontAwesomeIcon icon={faWandSparkles} className="w-3.5 h-3.5 text-indigo-400" /> Soft Skills
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {data.softSkills && data.softSkills.length > 0 ? (
                     data.softSkills.map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-0.5 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs rounded font-semibold">
+                      <span key={idx} className="px-2.5 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-500 text-xs rounded-full font-semibold">
                         {tag}
                       </span>
                     ))
@@ -378,12 +383,12 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               {/* Languages */}
               <div className="space-y-2">
                 <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Languages className="w-3.5 h-3.5 text-indigo-400" /> Languages
+                  <FontAwesomeIcon icon={faLanguage} className="w-3.5 h-3.5 text-indigo-400" /> Languages
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {data.languages && data.languages.length > 0 ? (
                     data.languages.map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-0.5 bg-pink-500/10 border border-pink-500/20 text-pink-300 text-xs rounded font-semibold">
+                      <span key={idx} className="px-2.5 py-1 bg-pink-500/10 border border-pink-500/20 text-pink-500 text-xs rounded-full font-semibold">
                         {tag}
                       </span>
                     ))
@@ -404,7 +409,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
           type="button"
           className="flex items-center justify-center gap-1.5 px-4 py-2 border border-slate-850 hover:bg-slate-950/40 text-slate-400 hover:text-slate-300 text-sm font-medium rounded-lg transition-colors cursor-pointer w-full sm:w-auto text-center"
         >
-          <ArrowLeft className="w-4 h-4" /> Back to Education
+          <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" /> Back to Education
         </button>
 
         <button
@@ -428,7 +433,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
             </>
           ) : (
             <>
-              <Send className="w-4 h-4" /> Submit
+              <FontAwesomeIcon icon={faPaperPlane} className="w-4 h-4" /> Submit
             </>
           )}
         </button>
@@ -441,7 +446,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
         <form onSubmit={handleModalSave} className="space-y-5">
           {validationError && (
             <div className="p-3 bg-pink-500/10 border border-pink-500/20 rounded-xl text-pink-500 text-xs flex items-center gap-1.5">
-              <AlertCircle className="w-4 h-4" /> {validationError}
+              <FontAwesomeIcon icon={faCircleExclamation} className="w-4 h-4" /> {validationError}
             </div>
           )}
 
@@ -515,7 +520,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               {/* Technical Skills */}
               <div className="space-y-2">
                 <label className="block text-slate-400 text-xs font-semibold flex items-center gap-1.5">
-                  <Code2 className="w-3.5 h-3.5 text-indigo-400" /> Technical Skills
+                  <FontAwesomeIcon icon={faCode} className="w-3.5 h-3.5 text-indigo-400" /> Technical Skills
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -578,7 +583,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               {/* Soft Skills */}
               <div className="space-y-2">
                 <label className="block text-slate-400 text-xs font-semibold flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" /> Soft Skills
+                  <FontAwesomeIcon icon={faWandSparkles} className="w-3.5 h-3.5 text-indigo-400" /> Soft Skills
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -641,7 +646,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               {/* Languages */}
               <div className="space-y-2">
                 <label className="block text-slate-400 text-xs font-semibold flex items-center gap-1.5">
-                  <Languages className="w-3.5 h-3.5 text-indigo-400" /> Languages
+                  <FontAwesomeIcon icon={faLanguage} className="w-3.5 h-3.5 text-indigo-400" /> Languages
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -736,7 +741,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               }}
               className="flex items-center gap-1 px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs rounded-md"
             >
-              <Plus className="w-3 h-3" /> Add Job
+              <FontAwesomeIcon icon={faPlus} className="w-3 h-3" /> Add Job
             </button>
           </div>
 
@@ -755,7 +760,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                     }}
                     className="absolute top-2 right-2 text-slate-500 hover:text-pink-500"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <FontAwesomeIcon icon={faTrash} className="w-3.5 h-3.5" />
                   </button>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -881,7 +886,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
         <form onSubmit={handleModalSave} className="space-y-4">
           {validationError && (
             <div className="p-3 bg-pink-500/10 border border-pink-500/20 rounded-xl text-pink-500 text-xs flex items-center gap-1.5">
-              <AlertCircle className="w-4 h-4" /> {validationError}
+              <FontAwesomeIcon icon={faCircleExclamation} className="w-4 h-4" /> {validationError}
             </div>
           )}
           <div className="flex justify-end">
@@ -897,7 +902,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               }}
               className="flex items-center gap-1 px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs rounded-md"
             >
-              <Plus className="w-3 h-3" /> Add Education
+              <FontAwesomeIcon icon={faPlus} className="w-3 h-3" /> Add Education
             </button>
           </div>
 
@@ -916,7 +921,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                     }}
                     className="absolute top-2 right-2 text-slate-500 hover:text-pink-500"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <FontAwesomeIcon icon={faTrash} className="w-3.5 h-3.5" />
                   </button>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

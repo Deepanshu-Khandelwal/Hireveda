@@ -1,12 +1,13 @@
 import React from 'react';
-import { User, Briefcase, GraduationCap, Code2, Eye } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faBriefcase, faGraduationCap, faEye } from '@fortawesome/free-solid-svg-icons';
 
 const StepIndicator = ({ currentStep, totalSteps = 4 }) => {
   const steps = [
-    { label: 'Basic Info', icon: User },
-    { label: 'Experience', icon: Briefcase },
-    { label: 'Education', icon: GraduationCap },
-    { label: 'Preview', icon: Eye }
+    { label: 'Basic Info', icon: faUser },
+    { label: 'Experience', icon: faBriefcase },
+    { label: 'Education', icon: faGraduationCap },
+    { label: 'Preview', icon: faEye }
   ];
 
   return (
@@ -43,7 +44,7 @@ const StepIndicator = ({ currentStep, totalSteps = 4 }) => {
                   }
                 `}
               >
-                <StepIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                <FontAwesomeIcon icon={StepIcon} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
               </div>
               <span 
                 className={`

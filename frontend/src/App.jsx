@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCheck, faSun, faMoon, faFileLines, faDatabase } from '@fortawesome/free-solid-svg-icons';
 import StepIndicator from './components/StepIndicator';
 import BasicInfoForm from './components/BasicInfoForm';
 import ExperienceForm from './components/ExperienceForm';
 import EducationForm from './components/EducationForm';
 import PreviewSection from './components/PreviewSection';
 import SubmissionsList from './components/SubmissionsList';
-import { UserCheck, Sun, Moon, FileText, Database } from 'lucide-react';
 
 function App() {
   const [step, setStep] = useState(1);
   const [viewMode, setViewMode] = useState('form'); // 'form' | 'submissions'
 
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'dark';
+    if (typeof window === 'undefined') return 'light';
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme === 'dark' ? 'dark' : 'light';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'light') {
-      root.classList.add('light');
-    } else {
-      root.classList.remove('light');
-    }
+    root.classList.toggle('light', theme === 'light');
     localStorage.setItem('theme', theme);
   }, [theme]);
 
@@ -144,7 +143,7 @@ function App() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3.5 sm:gap-4">
           <div className="logo-container" onClick={() => setViewMode('form')}>
             <div className="logo-badge">
-              <UserCheck className="w-5 h-5 text-white" />
+              <FontAwesomeIcon icon={faUserCheck} className="w-5 h-5 text-white" />
             </div>
             <span className="logo-text">
               HireVeda
@@ -157,14 +156,14 @@ function App() {
                 onClick={() => setViewMode('form')}
                 className={`nav-pill ${viewMode === 'form' ? 'nav-pill-active' : ''}`}
               >
-                <FileText className="w-4 h-4" />
+                <FontAwesomeIcon icon={faFileLines} className="w-4 h-4" />
                 <span className="hidden xs:inline">Form</span>
               </button>
               <button
                 onClick={() => setViewMode('submissions')}
                 className={`nav-pill ${viewMode === 'submissions' ? 'nav-pill-active' : ''}`}
               >
-                <Database className="w-4 h-4" />
+                <FontAwesomeIcon icon={faDatabase} className="w-4 h-4" />
                 <span className="hidden xs:inline">All Submissions</span>
               </button>
             </nav>
@@ -176,9 +175,9 @@ function App() {
               title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
               {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-400" />
+                <FontAwesomeIcon icon={faSun} className="w-4 h-4 text-amber-400" />
               ) : (
-                <Moon className="w-4 h-4 text-indigo-500" />
+                <FontAwesomeIcon icon={faMoon} className="w-4 h-4 text-indigo-500" />
               )}
             </button>
           </div>

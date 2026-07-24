@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { GraduationCap, Calendar, Award, Plus, Trash2, ArrowLeft, Building } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGraduationCap, faCalendarDays, faAward, faPlus, faTrash, faArrowLeft, faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
 
 const EducationForm = ({ data, updateData, onNext, onPrev }) => {
   const educations = data.education || [];
@@ -64,7 +65,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
           onClick={handleAdd}
           className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/30 hover:bg-indigo-500/20 text-indigo-400 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
         >
-          <Plus className="w-3.5 h-3.5" /> Add Education
+          <FontAwesomeIcon icon={faPlus} className="w-3.5 h-3.5" /> Add Education
         </button>
       </div>
 
@@ -77,7 +78,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {educations.length === 0 ? (
           <div className="border border-dashed border-slate-800 rounded-xl p-6 sm:p-8 text-center my-6">
-            <GraduationCap className="w-8 h-8 text-slate-600 mx-auto mb-2" />
+            <FontAwesomeIcon icon={faGraduationCap} className="w-8 h-8 text-slate-600 mx-auto mb-2" />
             <p className="text-slate-400 text-sm font-medium">No education records added yet.</p>
             <p className="text-slate-500 text-xs mt-1">You must provide at least one educational qualification.</p>
             <button
@@ -102,7 +103,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
                   className="absolute top-4 right-4 p-1 text-slate-500 hover:text-pink-500 hover:bg-pink-500/10 rounded-lg transition-all cursor-pointer"
                   title="Remove Education"
                 >
-                  <Trash2 className="w-4 h-4" />
+                  <FontAwesomeIcon icon={faTrash} className="w-4 h-4" />
                 </button>
 
                 <div className="text-xs text-indigo-400 font-semibold uppercase tracking-wider">
@@ -113,7 +114,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                      <Building className="w-3.5 h-3.5 text-indigo-400" /> College / School Name <span className="text-pink-500">*</span>
+                      <FontAwesomeIcon icon={faBuildingColumns} className="w-3.5 h-3.5 text-indigo-400" /> College / School Name <span className="text-pink-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -128,7 +129,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
 
                   <div>
                     <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                      <GraduationCap className="w-3.5 h-3.5 text-indigo-400" /> Degree / Course <span className="text-pink-500">*</span>
+                      <FontAwesomeIcon icon={faGraduationCap} className="w-3.5 h-3.5 text-indigo-400" /> Degree / Course <span className="text-pink-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -146,7 +147,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-indigo-400" /> Passing Year <span className="text-pink-500">*</span>
+                      <FontAwesomeIcon icon={faCalendarDays} className="w-3.5 h-3.5 text-indigo-400" /> Passing Year <span className="text-pink-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -161,7 +162,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
 
                   <div>
                     <label className="block text-slate-400 text-xs font-medium mb-1.5 flex items-center gap-1.5">
-                      <Award className="w-3.5 h-3.5 text-indigo-400" /> Grade / CGPA / %
+                      <FontAwesomeIcon icon={faAward} className="w-3.5 h-3.5 text-indigo-400" /> Grade / CGPA / %
                     </label>
                     <input
                       type="text"
@@ -185,7 +186,7 @@ const EducationForm = ({ data, updateData, onNext, onPrev }) => {
             onClick={onPrev}
             className="flex items-center justify-center gap-1.5 px-4 py-2 border border-slate-850 hover:bg-slate-950/40 text-slate-400 hover:text-slate-300 text-sm font-medium rounded-lg transition-colors cursor-pointer w-full sm:w-auto text-center"
           >
-            <ArrowLeft className="w-4 h-4" /> Back
+            <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" /> Back
           </button>
           <button
             type="submit"
