@@ -381,3 +381,25 @@ html.light .theme-btn:hover {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+/* Submit Loader Overlay & Button overrides for Light Mode compatibility */
+.submit-overlay {
+  background-color: rgba(3, 7, 18, 0.85) !important;
+}
+
+html.light .submit-overlay {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(16px);
+}
+
+/* Make submit button loader look premium in light theme when disabled/loading */
+html.light button.bg-slate-800 {
+  background-color: #f3f4f6 !important;
+  border-color: #e5e7eb !important;
+  color: #6b7280 !important;
+}
+
+html.light button.bg-slate-800 .animate-spin {
+  color: #6b7280 !important;
+}
+

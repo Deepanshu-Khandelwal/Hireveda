@@ -174,7 +174,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
     <div className="w-full max-w-4xl mx-auto space-y-8 animate-slide-up">
       {/* Loading Overlay */}
       {submitStatus === 'loading' && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 backdrop-blur-md animate-fade-in submit-overlay">
           <div className="text-center space-y-6 max-w-sm mx-auto">
             <div className="relative w-20 h-20 mx-auto">
               <div className="absolute inset-0 border-4 border-indigo-500/10 rounded-full" />
