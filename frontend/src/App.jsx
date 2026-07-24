@@ -25,9 +25,6 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [step, viewMode]);
   const [profileData, setProfileData] = useState({
     fullName: '',
     email: '',
@@ -136,7 +133,7 @@ function App() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans relative">
+   <div>
       
       {/* Dynamic colorful blobs in the background */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
@@ -225,7 +222,7 @@ function App() {
           <p>© 2026 HireVeda Portfolio Builder. Powered by MERN Stack & Tailwind CSS v4.</p>
         </div>
       </footer>
-    </div>
+      </div>
   );
 }
 

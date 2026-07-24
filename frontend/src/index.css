@@ -38,8 +38,6 @@ body {
   padding: 0;
   overflow-x: hidden;
   background-color: var(--bg-color);
-  width: 100%;
-  max-width: 100%;
   color: var(--text-primary);
 }
 
@@ -63,23 +61,6 @@ body {
   .hover-lift:hover {
     transform: translateY(-2px);
   }
-}
-
-/* Custom premium scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-color);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.15);
-  border-radius: 9999px;
-  border: 2px solid var(--bg-color);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.35);
 }
 
 /* Custom animations */
