@@ -39,6 +39,28 @@ body {
   overflow-x: hidden;
   background-color: var(--bg-color);
   color: var(--text-primary);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background-color: rgba(99, 102, 241, 0.25);
+  color: inherit;
+}
+
+/* Base theme-aware form surfaces */
+input, textarea, select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--input-border) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-secondary) !important;
 }
 
 /* Custom glassmorphism background and effects */
@@ -132,20 +154,24 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Custom theme overrides that cannot be easily generalized */
-html.light .bg-slate-950 {
-  background-color: #f3f4f6 !important;
-  border-color: #e5e7eb !important;
-}
-
-html.light .bg-slate-900\/60,
-html.light .bg-slate-900\/40 {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  border-color: #e5e7eb !important;
-}
-
-html.light .bg-slate-955\/50,
+html.light .bg-slate-950,
+html.light .bg-slate-950\/80,
 html.light .bg-slate-950\/50,
-html.light .bg-slate-950\/80 {
+html.light .bg-slate-950\/40,
+html.light .bg-slate-900,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/40,
+html.light .bg-slate-900\/30,
+html.light .bg-slate-900\/20,
+html.light .bg-slate-850,
+html.light .bg-slate-800,
+html.light .bg-slate-700 {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text-primary) !important;
+}
+
+html.light .bg-slate-955\/50 {
   background-color: #f9fafb !important;
   border-color: #e5e7eb !important;
 }
@@ -162,8 +188,10 @@ html.light .text-slate-100 { color: #111827 !important; }
 html.light .text-slate-200 { color: #1f2937 !important; }
 html.light .text-slate-300 { color: #374151 !important; }
 html.light .text-slate-400 { color: #4b5563 !important; }
+html.light .text-slate-500,
+html.light .text-slate-550,
 html.light .text-slate-555,
-html.light .text-slate-500 { color: #6b7280 !important; }
+html.light .text-slate-600,
 html.light .text-slate-650 { color: #6b7280 !important; }
 
 html.light .text-indigo-400 { color: #4f46e5 !important; }

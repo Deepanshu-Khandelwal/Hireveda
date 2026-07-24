@@ -31,7 +31,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl animate-slide-up">
+    <div className="w-full max-w-2xl mx-auto bg-[color:var(--card-bg)]/95 backdrop-blur-xl border border-[color:var(--card-border)] rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] animate-slide-up">
       <div className="mb-6 flex justify-between items-start">
         <div>
           <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">

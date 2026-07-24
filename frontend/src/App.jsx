@@ -132,7 +132,7 @@ function App() {
   };
 
   return (
-   <div>
+   <div className="relative min-h-screen overflow-x-hidden">
       
       {/* Dynamic colorful blobs in the background */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
@@ -216,7 +216,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full py-6 border-t border-slate-900 bg-slate-950 text-center text-xs text-slate-650">
+      <footer className="w-full py-6 border-t border-[color:var(--card-border)] bg-[color:var(--bg-color)] text-center text-xs text-[color:var(--text-secondary)]">
         <div className="max-w-6xl mx-auto px-4">
           <p>© 2026 HireVeda Portfolio Builder. Powered by MERN Stack & Tailwind CSS v4.</p>
         </div>
