@@ -386,3 +386,22 @@ html.light button.bg-slate-800 .animate-spin {
   color: #6b7280 !important;
 }
 
+/* Date input calendar picker style for dark and light modes */
+input[type="date"] {
+  color-scheme: dark;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+html.light input[type="date"] {
+  color-scheme: light;
+}
+
+html.light input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: none;
+}
+
+

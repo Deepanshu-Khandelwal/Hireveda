@@ -67,7 +67,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
           </button>
         </div>
       ) : (
-        <div className="space-y-6 max-h-[450px] overflow-y-auto pr-2 mb-6">
+        <div className="space-y-6 max-h-[500px] overflow-y-auto pr-2 mb-6">
           {experiences.map((exp, index) => (
             <div 
               key={index} 
