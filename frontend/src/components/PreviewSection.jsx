@@ -190,9 +190,10 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
 
       {/* Main Resume Sheet */}
       <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800/85 rounded-2xl overflow-hidden shadow-2xl relative">
+        <div className="h-1.5 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
         
         {/* Header Block */}
-        <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-950/65 to-slate-900/40 border-b border-slate-800/80 relative group">
+        <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-950/40 to-slate-900/20 border-b border-slate-800/60 relative group">
           <button
             onClick={() => openEditModal('basic')}
             className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-slate-850 hover:bg-indigo-600 border border-slate-800 hover:border-indigo-500 text-slate-400 hover:text-white rounded-lg transition-all shadow-md cursor-pointer"
@@ -257,7 +258,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               </div>
 
               {(!data.experience || data.experience.length === 0) ? (
-                <p className="text-slate-555 text-sm italic">Fresher / No prior experience listed.</p>
+                <p className="text-slate-500 text-sm italic">Fresher / No prior experience listed.</p>
               ) : (
                 <div className="space-y-4">
                   {data.experience.map((exp, idx) => (
@@ -297,7 +298,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
               </div>
 
               {(!data.education || data.education.length === 0) ? (
-                <p className="text-slate-555 text-sm italic">No education details listed.</p>
+                <p className="text-slate-500 text-sm italic">No education details listed.</p>
               ) : (
                 <div className="space-y-4">
                   {data.education.map((edu, idx) => (
@@ -308,7 +309,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                         </h3>
                         <span className="text-xs text-slate-500 font-medium">{edu.passingYear}</span>
                       </div>
-                      <div className="flex justify-between items-center text-xs text-slate-455">
+                      <div className="flex justify-between items-center text-xs text-slate-400">
                         <span>{edu.institution}</span>
                         {edu.grade && (
                           <span className="bg-indigo-500/10 px-2 py-0.5 rounded text-indigo-400">
@@ -343,7 +344,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                 <div className="flex flex-wrap gap-1.5">
                   {data.technicalSkills && data.technicalSkills.length > 0 ? (
                     data.technicalSkills.map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-0.5 bg-indigo-500/10 text-indigo-400 text-xs rounded font-medium">
+                      <span key={idx} className="px-2.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs rounded font-semibold">
                         {tag}
                       </span>
                     ))
@@ -361,7 +362,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                 <div className="flex flex-wrap gap-1.5">
                   {data.softSkills && data.softSkills.length > 0 ? (
                     data.softSkills.map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-0.5 bg-purple-500/10 text-purple-400 text-xs rounded font-medium">
+                      <span key={idx} className="px-2.5 py-0.5 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs rounded font-semibold">
                         {tag}
                       </span>
                     ))
@@ -379,7 +380,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                 <div className="flex flex-wrap gap-1.5">
                   {data.languages && data.languages.length > 0 ? (
                     data.languages.map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-0.5 bg-pink-500/10 text-pink-400 text-xs rounded font-medium">
+                      <span key={idx} className="px-2.5 py-0.5 bg-pink-500/10 border border-pink-500/20 text-pink-300 text-xs rounded font-semibold">
                         {tag}
                       </span>
                     ))
@@ -568,7 +569,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           list[idx].company = e.target.value;
                           setTempData({ ...tempData, experience: list });
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                     <div>
@@ -581,7 +582,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           list[idx].role = e.target.value;
                           setTempData({ ...tempData, experience: list });
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                   </div>
@@ -597,7 +598,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           list[idx].startDate = e.target.value;
                           setTempData({ ...tempData, experience: list });
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                     <div>
@@ -610,7 +611,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           list[idx].endDate = e.target.value;
                           setTempData({ ...tempData, experience: list });
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                   </div>
@@ -625,7 +626,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                         setTempData({ ...tempData, experience: list });
                       }}
                       rows="2"
-                      className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500 resize-none"
+                      className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500 resize-none"
                     />
                   </div>
                 </div>
@@ -678,7 +679,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
 
           <div className="space-y-4 max-h-[350px] overflow-y-auto pr-1">
             {(!tempData.education || tempData.education.length === 0) ? (
-              <p className="text-slate-555 text-xs text-center py-4">No records. Add at least one record.</p>
+              <p className="text-slate-500 text-xs text-center py-4">No records. Add at least one record.</p>
             ) : (
               tempData.education.map((edu, idx) => (
                 <div key={idx} className="relative p-4 bg-slate-950 border border-slate-850 rounded-xl space-y-3">
@@ -706,7 +707,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           setTempData({ ...tempData, education: list });
                           setValidationError('');
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                         required
                       />
                     </div>
@@ -721,7 +722,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           setTempData({ ...tempData, education: list });
                           setValidationError('');
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                         required
                       />
                     </div>
@@ -739,7 +740,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           setTempData({ ...tempData, education: list });
                           setValidationError('');
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                         required
                       />
                     </div>
@@ -753,7 +754,7 @@ const PreviewSection = ({ data, updateData, onPrev, onReset }) => {
                           list[idx].grade = e.target.value;
                           setTempData({ ...tempData, education: list });
                         }}
-                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-205 text-xs focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                   </div>

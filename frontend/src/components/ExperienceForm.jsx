@@ -71,7 +71,7 @@ const ExperienceForm = ({ data, updateData, onNext, onPrev }) => {
           {experiences.map((exp, index) => (
             <div 
               key={index} 
-              className="relative p-3.5 sm:p-5 bg-slate-950/50 border border-slate-800 rounded-xl space-y-4 animate-slide-in"
+              className="relative p-3.5 sm:p-5 bg-slate-950/50 border-y border-r border-l-4 border-slate-800/80 border-l-indigo-550 rounded-xl space-y-4 shadow-sm hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] transition-all animate-slide-in"
             >
               <button
                 type="button"

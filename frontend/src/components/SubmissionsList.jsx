@@ -113,7 +113,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
 
       {/* Loading State */}
       {loading && (
-        <div className="py-20 text-center space-y-4 bg-slate-905/30 border border-slate-900 rounded-2xl">
+        <div className="py-20 text-center space-y-4 bg-slate-900/30 border border-slate-900 rounded-2xl">
           <div className="animate-spin w-8 h-8 border-4 border-t-indigo-500 border-indigo-500/25 rounded-full mx-auto" />
           <p className="text-slate-500 text-sm">Fetching entries from MongoDB...</p>
         </div>
@@ -156,7 +156,7 @@ const SubmissionsList = ({ onEditProfile, onBackToForm }) => {
               {filteredProfiles.map((p) => (
                 <div 
                   key={p._id} 
-                  className="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-slate-700 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-200 group flex flex-col justify-between min-h-[220px]"
+                  className="bg-slate-900/60 backdrop-blur-md border-y border-r border-l-4 border-slate-800/80 border-l-indigo-500/60 hover:border-indigo-500/40 hover:border-l-indigo-400 rounded-2xl p-5 shadow-lg hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(99,102,241,0.06)] transition-all duration-300 group flex flex-col justify-between min-h-[220px]"
                 >
                   <div className="space-y-3">
                     {/* Header */}

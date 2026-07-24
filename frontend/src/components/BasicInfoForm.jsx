@@ -168,7 +168,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
               value={data.location || ''}
               onChange={handleChange}
               placeholder="e.g. Pune, India"
-              className="w-full bg-slate-950/80 border border-slate-800 focus:border-indigo-500 rounded-lg px-4 py-2.5 text-slate-200 placeholder-slate-655 focus:outline-none transition-colors duration-200"
+              className="w-full bg-slate-950/80 border border-slate-800 focus:border-indigo-500 rounded-lg px-4 py-2.5 text-slate-200 placeholder-slate-600 focus:outline-none transition-colors duration-200"
             />
           </div>
 
@@ -227,10 +227,10 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                       type="button"
                       disabled={isAdded}
                       onClick={() => addTag('technicalSkills', skill, setTechInput)}
-                      className={`text-[10px] px-2.5 py-0.5 border rounded-full font-medium transition-all cursor-pointer
+                      className={`text-[10px] px-2.5 py-0.5 border rounded-full font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer
                         ${isAdded 
-                          ? 'bg-slate-950/40 border-slate-855 text-slate-600 cursor-not-allowed' 
-                          : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-indigo-400 hover:border-indigo-500/35'}
+                          ? 'bg-slate-950/40 border-slate-800 text-slate-600 cursor-not-allowed' 
+                          : 'bg-slate-900/60 border-slate-800/80 text-slate-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/5'}
                       `}
                     >
                       +{skill}
@@ -284,7 +284,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
 
               {/* Quick Add Soft */}
               <div className="flex flex-wrap gap-1.5 items-center">
-                <span className="text-[10px] text-slate-555 font-bold uppercase tracking-wider mr-1">Quick Add:</span>
+                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mr-1">Quick Add:</span>
                 {quickSoftSkills.map((skill) => {
                   const isAdded = softSkills.includes(skill);
                   return (
@@ -293,10 +293,10 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                       type="button"
                       disabled={isAdded}
                       onClick={() => addTag('softSkills', skill, setSoftInput)}
-                      className={`text-[10px] px-2.5 py-0.5 border rounded-full font-medium transition-all cursor-pointer
+                      className={`text-[10px] px-2.5 py-0.5 border rounded-full font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer
                         ${isAdded 
-                          ? 'bg-slate-950/40 border-slate-855 text-slate-600 cursor-not-allowed' 
-                          : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-purple-400 hover:border-purple-500/35'}
+                          ? 'bg-slate-950/40 border-slate-800 text-slate-600 cursor-not-allowed' 
+                          : 'bg-slate-900/60 border-slate-800/80 text-slate-400 hover:text-purple-400 hover:border-purple-500/50 hover:bg-purple-500/5'}
                       `}
                     >
                       +{skill}
@@ -349,7 +349,7 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
 
               {/* Quick Add Lang */}
               <div className="flex flex-wrap gap-1.5 items-center">
-                <span className="text-[10px] text-slate-555 font-bold uppercase tracking-wider mr-1">Quick Add:</span>
+                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mr-1">Quick Add:</span>
                 {quickLanguages.map((lang) => {
                   const isAdded = languages.includes(lang);
                   return (
@@ -358,10 +358,10 @@ const BasicInfoForm = ({ data, updateData, onNext, onPrev }) => {
                       type="button"
                       disabled={isAdded}
                       onClick={() => addTag('languages', lang, setLangInput)}
-                      className={`text-[10px] px-2.5 py-0.5 border rounded-full font-medium transition-all cursor-pointer
+                      className={`text-[10px] px-2.5 py-0.5 border rounded-full font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer
                         ${isAdded 
-                          ? 'bg-slate-950/40 border-slate-855 text-slate-600 cursor-not-allowed' 
-                          : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-pink-400 hover:border-pink-500/35'}
+                          ? 'bg-slate-950/40 border-slate-800 text-slate-600 cursor-not-allowed' 
+                          : 'bg-slate-900/60 border-slate-800/80 text-slate-400 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/5'}
                       `}
                     >
                       +{lang}
