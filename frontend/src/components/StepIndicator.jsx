@@ -11,7 +11,7 @@ const StepIndicator = ({ currentStep, totalSteps = 4 }) => {
   ];
 
   return (
-    <div className="w-full max-w-2xl mx-auto mb-8">
+    <div className="w-full max-w-2xl mx-auto px-4 mb-8">
       {/* Wizard Track */}
       <div className="relative flex justify-between items-center w-full">
         {/* Background Line */}
