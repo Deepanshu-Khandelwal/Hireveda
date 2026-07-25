@@ -132,14 +132,14 @@ function App() {
   };
 
   return (
-   <div>
+   <div className="relative min-h-screen w-full overflow-x-hidden">
       
       {/* Dynamic colorful blobs in the background */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-pink-500/10 blur-[120px] pointer-events-none animate-pulse-slow" style={{ animationDelay: '-4s' }} />
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[500px] rounded-full bg-pink-500/10 blur-[120px] pointer-events-none animate-pulse-slow" style={{ animationDelay: '-4s' }} />
 
       {/* Header bar */}
-      <header className="navbar-header">
+      <header className="navbar-header relative z-20">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3.5 sm:gap-4">
           <div className="logo-container" onClick={() => setViewMode('form')}>
             <div className="logo-badge">
@@ -185,7 +185,7 @@ function App() {
       </header>
 
       {/* Main Workspace */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 md:py-12 z-10 flex flex-col justify-start">
+      <main className="relative z-10 flex-1 w-full max-w-6xl mx-auto px-4 py-8 md:py-12 flex flex-col justify-start">
         
         {viewMode === 'form' ? (
           <>
@@ -216,7 +216,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full py-6 border-t border-[color:var(--card-border)] bg-[color:var(--bg-color)] text-center text-xs text-[color:var(--text-secondary)]">
+      <footer className="relative z-10 w-full py-6 border-t border-[color:var(--card-border)] bg-[color:var(--bg-color)] text-center text-xs text-[color:var(--text-secondary)]">
         <div className="max-w-6xl mx-auto px-4">
           <p>© 2026 HireVeda Portfolio Builder. Powered by MERN Stack & Tailwind CSS v4.</p>
         </div>
