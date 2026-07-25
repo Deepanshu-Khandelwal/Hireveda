@@ -26,15 +26,10 @@ html.light {
 html {
   font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   overflow-x: hidden;
+  overflow-y: auto;
   background-color: var(--bg-color);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-html::-webkit-scrollbar {
-  display: none;
 }
 
 body {
@@ -46,11 +41,18 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   min-height: 100vh;
+}
+
+.overflow-y-auto,
+.overflow-y-scroll,
+.overflow-auto {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar {
+.overflow-y-auto::-webkit-scrollbar,
+.overflow-y-scroll::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar {
   display: none;
 }
 

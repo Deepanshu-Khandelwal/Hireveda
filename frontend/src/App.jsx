@@ -132,7 +132,7 @@ function App() {
   };
 
   return (
-   <div className="relative min-h-screen overflow-x-hidden">
+   <div className=" min-h-screen overflow-x-hidden">
       
       {/* Dynamic colorful blobs in the background */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
