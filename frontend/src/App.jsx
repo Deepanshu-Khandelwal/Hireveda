@@ -132,7 +132,7 @@ function App() {
   };
 
   return (
-   <div className="overflow-x-hidden">
+   <div>
       
       {/* Dynamic colorful blobs in the background */}
       <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse-slow" />
